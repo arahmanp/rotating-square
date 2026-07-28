@@ -20,6 +20,7 @@ struct Object
 };
 
 void render(const Object &object);
+bool is_point_inside_object(const Point &point, const Object &object);
 
 int main()
 {
@@ -46,4 +47,25 @@ void render(const Object &object)
 
         std::cout << '\n';
     }
+}
+
+bool is_point_inside_object(const Point &point, const Object &object)
+{
+    auto [a, b] = point;
+    int n = object.points.size();
+    bool inside = false;
+
+    int j = n - 1;
+    for(int i = 0; i < n; i++)
+    {
+        auto [xi, yi] = object.points[i];
+        auto [xj, yj] = object.points[j];
+
+        if(((yi > b) != (yj > b)) && (a < (xj - xi) * (b - yi) / (yj - yi + 1e-9) + xi))
+        {
+            inside = !inside;
+        }
+    }
+
+    return inside;
 }
