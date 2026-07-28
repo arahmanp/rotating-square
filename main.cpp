@@ -77,3 +77,9 @@ bool is_point_inside_object(const Point &point, const Object &object)
 
     return inside;
 }
+
+void clear_screen() {
+    // \033[H  - Moves the cursor to the top-left corner (row 1, column 1)
+    // \033[2J - Clears the entire visible screen
+    std::cout << "\033[H\033[2J" << std::flush;
+}
