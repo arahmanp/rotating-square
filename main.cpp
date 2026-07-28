@@ -9,6 +9,8 @@ struct Point
     Point(double coord_x, double coord_y) : x(coord_x), y(coord_y) {};
 };
 
+// TODO: Try different representation of a square, such as an initial point, width, and length of the square.
+
 struct Square
 {
     std::vector<Point> points;
