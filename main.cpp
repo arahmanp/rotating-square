@@ -73,6 +73,8 @@ bool is_point_inside_object(const Point &point, const Object &object)
         {
             inside = !inside;
         }
+
+        j = i;
     }
 
     return inside;
