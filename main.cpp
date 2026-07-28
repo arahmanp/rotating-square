@@ -1,8 +1,12 @@
 #include <iostream>
 #include <vector>
+#include <thread>
+#include <chrono>
 
 #define HEIGHT 25
 #define WIDTH 100
+
+#define RENDER_SPEED 250 // in milisecond per frame
 
 struct Point
 {
@@ -21,18 +25,35 @@ struct Object
 
 void render(const Object &object);
 bool is_point_inside_object(const Point &point, const Object &object);
+void clear_screen();
 
 int main()
 {
     std::vector<Point> object_points = {
         {0, 0},
         {0, 20},
-        {20, 14}
+        {14, 20},
+        {14, 0},
     };
 
     Object A = object_points;
 
-    render(A);
+    Point T = {1, 2};
+
+    for(int i = 1; i <= 15; i++)
+    {
+        clear_screen();
+
+        render(A);
+
+        for(auto &[x, y] : A.points)
+        {
+            x += T.x;
+            y += T.y;
+        }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(RENDER_SPEED));
+    }
 
     return 0;
 }
