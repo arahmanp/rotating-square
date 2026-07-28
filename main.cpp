@@ -18,7 +18,9 @@ struct Square
 
 int main()
 {
-    std::cout << "Hello, world!\n";
+    Point A = {0, 4.5};
+
+    std::cout << "coordinate of point A = (" << A.x << ", " << A.y << ")\n"; 
 
     return 0;
 }
