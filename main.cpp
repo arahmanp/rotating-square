@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 
 struct Point
 {
@@ -6,6 +7,13 @@ struct Point
     double y;
 
     Point(double coord_x, double coord_y) : x(coord_x), y(coord_y) {};
+};
+
+struct Square
+{
+    std::vector<Point> points;
+
+    Square(const std::vector<Point> &square_points) : points(square_points) {};
 };
 
 int main()
