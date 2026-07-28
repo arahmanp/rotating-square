@@ -11,6 +11,8 @@ struct Point
 
 // TODO: Try different representation of a square, such as an initial point, width, and length of the square.
 
+// TODO: Create function prototype
+
 struct Square
 {
     std::vector<Point> points;
