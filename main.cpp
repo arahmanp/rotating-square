@@ -18,9 +18,16 @@ struct Object
 
 int main()
 {
-    Point A = {0, 4.5};
+    std::vector<Point> object_points = {
+        {0, 0},
+        {0, 5}
+    };
 
-    std::cout << "coordinate of point A = (" << A.x << ", " << A.y << ")\n"; 
+    Object A = object_points;
+
+    for(auto [x, y] : A.points) {
+        std::cout << x << ' ' << y << '\n';
+    }
 
     return 0;
 }
