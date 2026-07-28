@@ -26,7 +26,8 @@ int main()
 {
     std::vector<Point> object_points = {
         {0, 0},
-        {0, 5}
+        {0, 20},
+        {20, 14}
     };
 
     Object A = object_points;
