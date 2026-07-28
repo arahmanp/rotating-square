@@ -42,7 +42,14 @@ void render(const Object &object)
     {
         for(int j = 0; j < WIDTH; j++)
         {
-            std::cout << '.';
+            if(is_point_inside_object({(double)i, (double)j}, object))
+            {
+                std::cout << '#';
+            }
+            else
+            {
+                std::cout << '.';
+            }
         }
 
         std::cout << '\n';
