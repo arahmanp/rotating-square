@@ -26,6 +26,7 @@ struct Object
 void render(const Object &object);
 bool is_point_inside_object(const Point &point, const Object &object);
 void clear_screen();
+void translate(Object &object, const Point &T, int duration /* in milisecond */);
 
 int main()
 {
@@ -105,4 +106,30 @@ void clear_screen() {
     // \033[H  - Moves the cursor to the top-left corner (row 1, column 1)
     // \033[2J - Clears the entire visible screen
     std::cout << "\033[H\033[2J" << std::flush;
+}
+
+void translate(Object &object, const Point &T, int duration /* in milisecond */)
+{
+    int d_x = T.x;
+    int d_y = T.y;
+
+    int n_frame = duration / RENDER_DELAY;
+
+    double v_x = (RENDER_DELAY * d_x) / (double)duration;
+    double v_y = (RENDER_DELAY * d_y) / (double)duration;
+
+    for(int frame = 1; frame <= n_frame; frame++)
+    {
+        clear_screen();
+
+        render(object);
+
+        for(auto &[x, y] : object.points)
+        {
+            x += v_x;
+            y += v_y;
+        }
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(RENDER_DELAY));
+    }
 }
