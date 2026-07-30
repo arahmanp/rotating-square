@@ -6,7 +6,7 @@
 #define HEIGHT 25
 #define WIDTH 100
 
-#define RENDER_SPEED 250 // in milisecond per frame
+#define RENDER_DELAY 100 // in milisecond per frame
 
 struct Point
 {
@@ -32,29 +32,22 @@ int main()
 {
     std::vector<Point> object_points = {
         {0, 0},
-        {0, 20},
-        {14, 20},
-        {14, 0},
+        {0, 10},
+        {7, 10},
+        {7, 0},
     };
 
     Object A = object_points;
 
-    Point T = {1, 2};
+    Point T1 = {10, 15};
+    Point T2 = {-10, 15};
+    Point T3 = {0, 50};
+    Point T4 = {20, -20};
 
-    for(int i = 1; i <= 15; i++)
-    {
-        clear_screen();
-
-        render(A);
-
-        for(auto &[x, y] : A.points)
-        {
-            x += T.x;
-            y += T.y;
-        }
-
-        std::this_thread::sleep_for(std::chrono::milliseconds(RENDER_SPEED));
-    }
+    translate(A, T1, 4000);
+    translate(A, T2, 4000);
+    translate(A, T3, 2000);
+    translate(A, T4, 1000);
 
     return 0;
 }
