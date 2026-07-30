@@ -103,13 +103,15 @@ void clear_screen() {
 
 void translate(Object &object, const Point &T, int duration /* in milisecond */)
 {
-    int d_x = T.x;
-    int d_y = T.y;
+    if(duration < RENDER_DELAY)
+    {
+        return;
+    }
 
     int n_frame = duration / RENDER_DELAY;
 
-    double v_x = (RENDER_DELAY * d_x) / (double)duration;
-    double v_y = (RENDER_DELAY * d_y) / (double)duration;
+    double v_x = (RENDER_DELAY * T.x) / (double)duration;
+    double v_y = (RENDER_DELAY * T.y) / (double)duration;
 
     for(int frame = 1; frame <= n_frame; frame++)
     {
